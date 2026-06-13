@@ -1,10 +1,883 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Valyuta UZ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alimardon Toshmatov is an Android Developer in Tashkent, Uzbekistan, focused on Kotlin, Jetpack Compose, clean architecture and reliable mobile products.">
+  <meta name="theme-color" content="#080b10">
+  <meta property="og:title" content="Alimardon Toshmatov — Android Developer">
+  <meta property="og:description" content="Android experience, selected products, technology stack and professional updates.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toshmatov.uz/">
+  <link rel="canonical" href="https://toshmatov.uz/">
+  <title>Alimardon Toshmatov — Android Developer</title>
+  <style>
+    :root {
+      --bg: #080b10;
+      --bg-soft: #0b1018;
+      --surface: #0e141e;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --dim: #64748b;
+      --line: rgba(148, 163, 184, 0.18);
+      --line-strong: rgba(148, 163, 184, 0.32);
+      --blue: #3b82f6;
+      --blue-bright: #60a5fa;
+      --blue-soft: rgba(59, 130, 246, 0.12);
+      --green: #22c55e;
+      --max: 1380px;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--bg);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    ::selection { background: var(--blue); color: white; }
+
+    .container { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
+    .section { border-top: 1px solid var(--line); padding: 72px 0; }
+    .eyebrow, .section-label {
+      color: var(--blue-bright);
+      font-family: var(--mono);
+      font-size: .76rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .section-label { display: flex; align-items: center; gap: 14px; margin-bottom: 34px; }
+    .section-label::after { content: ""; width: 48px; height: 1px; background: var(--line-strong); }
+    .muted { color: var(--muted); }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 11, 16, .9);
+      backdrop-filter: blur(18px);
+    }
+    .nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .brand { display: inline-flex; align-items: center; gap: 9px; font-family: var(--mono); font-weight: 700; }
+    .brand-code { color: var(--muted); font-weight: 400; }
+    .brand-name { color: var(--blue-bright); font-size: 1.1rem; }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a {
+      position: relative;
+      color: #cbd5e1;
+      font-size: .84rem;
+      padding: 25px 0 22px;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -1px;
+      height: 2px;
+      background: var(--blue);
+      transition: right .2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: white; }
+    .nav-links a:hover::after, .nav-links a.active::after { right: 0; }
+    .linkedin-top {
+      border: 1px solid var(--line-strong);
+      color: var(--blue-bright) !important;
+      padding: 8px 10px !important;
+      font-family: var(--mono);
+    }
+    .linkedin-top::after { display: none; }
+    .language-switcher { display: flex; align-items: center; gap: 4px; margin-left: -14px; }
+    .language-button {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      padding: 7px 8px;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: .65rem;
+    }
+    .language-button:hover, .language-button.active { border-color: var(--blue); color: white; background: var(--blue-soft); }
+    .menu-button {
+      display: none;
+      color: white;
+      background: transparent;
+      border: 1px solid var(--line-strong);
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .hero { padding: 74px 0 56px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; min-height: 480px; }
+    .hero-main { padding-right: clamp(32px, 6vw, 92px); border-right: 1px solid var(--line-strong); }
+    .hero h1 {
+      margin: 22px 0 12px;
+      max-width: 760px;
+      font-size: clamp(3.7rem, 7vw, 7rem);
+      line-height: .86;
+      letter-spacing: -.07em;
+    }
+    .hero-role { margin: 0 0 18px; color: var(--blue-bright); font-size: clamp(1.55rem, 2.5vw, 2.35rem); font-weight: 700; }
+    .hero-intro { max-width: 660px; color: #cbd5e1; font-size: clamp(1rem, 1.5vw, 1.22rem); line-height: 1.65; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 18px 28px; margin: 28px 0; color: var(--muted); font-family: var(--mono); font-size: .78rem; }
+    .status { display: inline-flex; align-items: center; gap: 9px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px rgba(34,197,94,.1); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border: 1px solid var(--line-strong);
+      color: white;
+      font-size: .87rem;
+      font-weight: 650;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); border-color: var(--blue-bright); }
+    .button-primary { background: var(--blue); border-color: var(--blue); }
+    .button-primary:hover { background: #2563eb; }
+
+    .hero-aside { padding-left: clamp(32px, 5vw, 76px); display: grid; align-content: center; gap: 28px; }
+    .brief-item { border-left: 1px solid var(--line-strong); padding-left: 22px; }
+    .brief-item dt { margin-bottom: 8px; color: var(--blue-bright); font-family: var(--mono); font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; }
+    .brief-item dd { margin: 0; color: #dbe4f0; line-height: 1.62; }
+    .principle { border-left: 2px solid var(--blue); padding: 2px 0 2px 22px; color: #cbd5e1; font-family: var(--mono); font-size: .82rem; line-height: 1.7; }
+
+    .impact { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(11,16,24,.72); }
+    .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr) 1.4fr; }
+    .impact-item { min-height: 172px; padding: 34px 28px; border-right: 1px solid var(--line); }
+    .impact-item strong { display: block; margin: 16px 0 8px; color: var(--text); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1; }
+    .impact-item span { color: var(--muted); font-size: .84rem; line-height: 1.5; }
+    .impact-copy { padding: 36px; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+    .impact-copy p { margin: 10px 0 0; color: #cbd5e1; line-height: 1.7; }
+
+    .experience-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+    .experience-tip { color: var(--muted); font-family: var(--mono); font-size: .72rem; }
+    .experience-list { border-top: 1px solid var(--line-strong); }
+    .role { border-bottom: 1px solid var(--line); }
+    .role summary {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 92px 148px minmax(280px, 1fr) 190px 34px;
+      gap: 20px;
+      align-items: start;
+      padding: 27px 0;
+      cursor: pointer;
+    }
+    .role summary::-webkit-details-marker { display: none; }
+    .role-number { color: rgba(148,163,184,.35); font-size: 3.2rem; line-height: .85; font-weight: 750; letter-spacing: -.06em; }
+    .role-date { color: #cbd5e1; font-family: var(--mono); font-size: .73rem; line-height: 1.55; padding-top: 2px; }
+    .role-title h3 { margin: 0 0 5px; font-size: 1.03rem; }
+    .company { color: var(--blue-bright); font-weight: 650; }
+    .role-summary { margin: 9px 0 0; color: var(--muted); font-size: .84rem; line-height: 1.5; max-width: 720px; }
+    .role-place { color: var(--muted); font-family: var(--mono); font-size: .7rem; line-height: 1.55; }
+    .role-toggle { color: var(--text); font-size: 1.35rem; line-height: 1; transition: transform .2s ease; }
+    .role[open] .role-toggle { transform: rotate(45deg); color: var(--blue-bright); }
+    .role-detail { margin-left: 260px; padding: 0 224px 28px 0; }
+    .role-detail ul { margin: 0; padding-left: 18px; color: #cbd5e1; line-height: 1.72; font-size: .9rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .tag { border: 1px solid var(--line-strong); padding: 7px 9px; color: #b8c4d4; font-family: var(--mono); font-size: .68rem; background: rgba(255,255,255,.015); }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    .project {
+      min-height: 290px;
+      border: 1px solid var(--line-strong);
+      background: rgba(14,20,30,.68);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .project:hover { transform: translateY(-4px); border-color: var(--blue); background: var(--surface); }
+    .project-index { color: var(--blue-bright); font-family: var(--mono); font-size: .75rem; }
+    .project h3 { margin: 34px 0 6px; font-size: 1.22rem; }
+    .project-type { color: var(--muted); font-family: var(--mono); font-size: .72rem; }
+    .project p { color: #cbd5e1; line-height: 1.6; font-size: .87rem; }
+    .project-stack { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); color: var(--blue-bright); font-family: var(--mono); font-size: .67rem; line-height: 1.6; }
+    .project-play { display: inline-block; margin-top: 16px; color: white; font-family: var(--mono); font-size: .7rem; text-decoration: underline; text-underline-offset: 5px; }
+
+    .stack-grid { display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .skill-icons-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+    .skill-icon {
+      min-height: 116px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(14,20,30,.56);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .skill-icon:hover { transform: translateY(-3px); border-color: var(--blue); background: var(--surface); }
+    .skill-icon img { width: 46px; height: 46px; flex: 0 0 auto; }
+    .skill-icon strong { display: block; margin-bottom: 5px; font-size: .84rem; line-height: 1.3; }
+    .skill-icon span { color: var(--muted); font-family: var(--mono); font-size: .62rem; line-height: 1.4; }
+    .stack-group { padding: 25px 20px; border-right: 1px solid var(--line); }
+    .stack-group:last-child { border-right: 0; }
+    .stack-group h3 { margin: 0 0 18px; color: #cbd5e1; font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; }
+    .stack-group ul { list-style: none; margin: 0; padding: 0; }
+    .stack-group li { position: relative; padding: 5px 0 5px 12px; color: var(--muted); font-size: .8rem; line-height: 1.4; }
+    .stack-group li::before { content: "/"; position: absolute; left: 0; color: var(--blue); font-family: var(--mono); }
+
+    .updates-layout { display: grid; grid-template-columns: 220px 1fr; gap: 38px; }
+    .filters { display: flex; flex-wrap: wrap; align-content: start; gap: 8px; }
+    .filter {
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      color: var(--muted);
+      padding: 8px 11px;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: .68rem;
+    }
+    .filter:hover, .filter.active { border-color: var(--blue); color: white; background: var(--blue-soft); }
+    .updates-list { border-top: 1px solid var(--line); }
+    .update {
+      display: grid;
+      grid-template-columns: 105px 1fr 100px;
+      gap: 22px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .update[hidden] { display: none; }
+    .update time, .update-category { color: var(--blue-bright); font-family: var(--mono); font-size: .7rem; text-transform: uppercase; }
+    .update h3 { margin: 0 0 7px; font-size: .94rem; }
+    .update p { margin: 0; color: var(--muted); font-size: .83rem; line-height: 1.55; }
+    .update-category { justify-self: end; }
+
+    .contact { padding: 70px 0; background: rgba(37,99,235,.07); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
+    .contact h2 { margin: 0; max-width: 620px; font-size: clamp(2.2rem, 5vw, 4.8rem); letter-spacing: -.055em; line-height: .98; }
+    .contact-copy { border-left: 1px solid var(--line-strong); padding-left: 34px; }
+    .contact-copy p { color: #cbd5e1; line-height: 1.7; }
+
+    .footer { border-top: 1px solid var(--line); padding: 26px 0; color: var(--muted); font-family: var(--mono); font-size: .68rem; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .footer a { color: var(--blue-bright); }
+    .back-top { border: 1px solid var(--line-strong); padding: 8px 10px; }
+
+    :focus-visible { outline: 2px solid var(--blue-bright); outline-offset: 4px; }
+
+    @media (max-width: 1100px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 52px; }
+      .hero-main { border-right: 0; padding-right: 0; }
+      .hero-aside { border-top: 1px solid var(--line); padding: 42px 0 0; grid-template-columns: 1fr 1fr; }
+      .principle { grid-column: 1 / -1; }
+      .impact-grid { grid-template-columns: repeat(2, 1fr); }
+      .impact-item:nth-child(2) { border-right: 0; }
+      .impact-copy { grid-column: 1 / -1; border-top: 1px solid var(--line); }
+      .role summary { grid-template-columns: 64px 120px 1fr 34px; }
+      .role-place { grid-column: 3; }
+      .role-toggle { grid-column: 4; grid-row: 1; }
+      .role-detail { margin-left: 204px; padding-right: 54px; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .skill-icons-grid { grid-template-columns: repeat(3, 1fr); }
+      .stack-grid { grid-template-columns: repeat(3, 1fr); }
+      .stack-group:nth-child(3) { border-right: 0; }
+      .stack-group:nth-child(-n+3) { border-bottom: 1px solid var(--line); }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(calc(100% - 32px), var(--max)); }
+      .section { padding: 54px 0; }
+      .menu-button { display: block; }
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 16px 20px;
+        background: #080b10;
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 14px 8px; border-bottom: 1px solid var(--line); }
+      .nav-links a::after { display: none; }
+      .linkedin-top { margin-top: 10px; text-align: center; }
+      .language-switcher { margin: 12px 0 0; justify-content: center; }
+      .hero { padding-top: 54px; }
+      .hero h1 { font-size: clamp(3.1rem, 18vw, 5rem); }
+      .hero-aside { grid-template-columns: 1fr; }
+      .principle { grid-column: auto; }
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+      .impact-item { min-height: 142px; padding: 26px 18px; }
+      .impact-copy { padding: 30px 18px; }
+      .experience-head { display: block; }
+      .experience-tip { margin: -20px 0 20px; }
+      .role summary { grid-template-columns: 52px 1fr 30px; gap: 13px; }
+      .role-number { font-size: 2.5rem; }
+      .role-date { grid-column: 2; grid-row: 2; }
+      .role-title { grid-column: 2; grid-row: 1; }
+      .role-place { grid-column: 2; grid-row: 3; }
+      .role-toggle { grid-column: 3; }
+      .role-detail { margin-left: 65px; padding: 0 0 26px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project { min-height: 250px; }
+      .skill-icons-grid { grid-template-columns: 1fr 1fr; }
+      .skill-icon { min-height: 94px; padding: 14px; }
+      .skill-icon img { width: 40px; height: 40px; }
+      .stack-grid { grid-template-columns: 1fr 1fr; }
+      .stack-group:nth-child(2n) { border-right: 0; }
+      .stack-group:nth-child(3) { border-right: 1px solid var(--line); }
+      .stack-group:nth-child(-n+4) { border-bottom: 1px solid var(--line); }
+      .updates-layout { grid-template-columns: 1fr; gap: 22px; }
+      .update { grid-template-columns: 88px 1fr; }
+      .update-category { grid-column: 2; justify-self: start; }
+      .contact-grid { grid-template-columns: 1fr; gap: 34px; }
+      .contact-copy { padding-left: 20px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Alimardon Toshmatov",
+    "jobTitle": "Android Developer",
+    "url": "https://toshmatov.uz/",
+    "sameAs": ["https://www.linkedin.com/in/alimardon-toshmatov-174042230/"],
+    "address": {"@type": "PostalAddress", "addressLocality": "Tashkent", "addressCountry": "UZ"},
+    "knowsAbout": ["Kotlin", "Java", "Android SDK", "Jetpack Compose", "Kotlin Multiplatform", "Compose Multiplatform", "Clean Architecture", "Ktor", "Koin", "GraphQL", "Firebase"]
+  }
+  </script>
 </head>
 <body>
-  <h1>Valyuta UZ</h1>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="brand" href="#about" aria-label="Alimardon Toshmatov home">
+        <span class="brand-code">&lt;/&gt;</span><span class="brand-name">AT</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#stack">Stack</a>
+        <a href="#updates">Updates</a>
+        <a href="#contact">Contact</a>
+        <a class="linkedin-top" href="https://www.linkedin.com/in/alimardon-toshmatov-174042230/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <div class="language-switcher" aria-label="Language">
+          <button class="language-button active" type="button" data-language="en" aria-pressed="true">EN</button>
+          <button class="language-button" type="button" data-language="uz" aria-pressed="false">UZ</button>
+          <button class="language-button" type="button" data-language="ru" aria-pressed="false">RU</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div class="container hero-grid">
+        <div class="hero-main">
+          <div class="eyebrow">Android Developer</div>
+          <h1>Alimardon<br>Toshmatov</h1>
+          <p class="hero-role">Android Developer</p>
+          <p class="hero-intro">I build reliable, scalable and user-friendly Android products with modern architecture, thoughtful UX and maintainable code.</p>
+          <div class="hero-meta">
+            <span>Tashkent, Uzbekistan</span>
+            <span class="status"><span class="status-dot" aria-hidden="true"></span>Open to professional connections</span>
+          </div>
+          <div class="actions">
+            <a class="button button-primary" href="#experience">View experience</a>
+            <a class="button" href="https://www.linkedin.com/in/alimardon-toshmatov-174042230/" target="_blank" rel="noreferrer">LinkedIn profile</a>
+          </div>
+        </div>
+        <dl class="hero-aside">
+          <div class="brief-item">
+            <dt>Focus</dt>
+            <dd>Android products used across mobility, messenger, payment, rental and public-safety domains.</dd>
+          </div>
+          <div class="brief-item">
+            <dt>Approach</dt>
+            <dd>Clean architecture, modular systems, Kotlin Multiplatform, Compose Multiplatform and long-term maintainability.</dd>
+          </div>
+          <div class="principle">Writing clean code is not just about today. It is about the team, the product and the users who will rely on it tomorrow.</div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="impact" aria-labelledby="impact-title">
+      <div class="container">
+        <div class="section-label" id="impact-title" style="padding-top:28px;margin-bottom:0">Impact summary</div>
+        <div class="impact-grid">
+          <div class="impact-item"><strong>7</strong><span>Professional roles documented from 2022 to present</span></div>
+          <div class="impact-item"><strong>2022</strong><span>Start of the professional Android journey</span></div>
+          <div class="impact-item"><strong>5</strong><span>Featured mobile products across different domains</span></div>
+          <div class="impact-item"><strong>20+</strong><span>Technologies including native Android, KMM and CMP</span></div>
+          <div class="impact-copy">
+            <div class="eyebrow">What I do</div>
+            <p>End-to-end Android development: product features, scalable architecture, networking, state management, mapping, media and build performance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="experience-head">
+          <div class="section-label">Experience</div>
+          <p class="experience-tip">Select a role to expand or collapse details</p>
+        </div>
+        <div class="experience-list">
+          <details class="role" open>
+            <summary>
+              <span class="role-number">01</span>
+              <span class="role-date">Dec 2025<br>— Present</span>
+              <span class="role-title"><h3>Mobile Developer</h3><span class="company">“XAVFSIZ SHAHAR” DM</span><p class="role-summary">Building Android solutions in a public-safety environment.</p></span>
+              <span class="role-place">Tashkent Region, Uzbekistan<br>On-site · Full-time</span>
+              <span class="role-toggle" aria-hidden="true">+</span>
+            </summary>
+            <div class="role-detail">
+              <ul><li>Working as a full-time Mobile Developer on-site in Tashkent Region.</li></ul>
+              <div class="tags"><span class="tag">Android SDK</span><span class="tag">Java</span></div>
+            </div>
+          </details>
+
+          <details class="role" open>
+            <summary>
+              <span class="role-number">02</span>
+              <span class="role-date">Sep 2025<br>— Present</span>
+              <span class="role-title"><h3>Android Developer</h3><span class="company">YOTO</span><p class="role-summary">Developing and maintaining the YOTO e-scooter rental and management application.</p></span>
+              <span class="role-place">Tashkent, Uzbekistan<br>On-site · Part-time</span>
+              <span class="role-toggle" aria-hidden="true">+</span>
+            </summary>
+            <div class="role-detail">
+              <ul><li>Developing the mobile experience that lets users rent and manage YOTO e-scooters.</li><li>Maintaining the Android product while improving day-to-day reliability and usability.</li></ul>
+              <div class="tags"><span class="tag">Kotlin</span><span class="tag">Android SDK</span></div>
+            </div>
+          </details>
+
+          <details class="role" open>
+            <summary>
+              <span class="role-number">03</span>
+              <span class="role-date">May 2025<br>— Aug 2025</span>
+              <span class="role-title"><h3>Android Developer</h3><span class="company">WeDrive</span><p class="role-summary">Delivered taxi client features including payments, login and map experiences.</p></span>
+              <span class="role-place">Remote<br>Full-time</span>
+              <span class="role-toggle" aria-hidden="true">+</span>
+            </summary>
+            <div class="role-detail">
+              <ul><li>Worked on the taxi app client side, including Payment, Login and MapScreen.</li><li>Used Koin for dependency injection, Ktor Client for networking and MVI for state management.</li><li>Integrated Mapbox for mapping and navigation.</li></ul>
+              <div class="tags"><span class="tag">Kotlin</span><span class="tag">Koin</span><span class="tag">Ktor Client</span><span class="tag">MVI</span><span class="tag">Mapbox</span></div>
+            </div>
+          </details>
+
+          <details class="role">
+            <summary>
+              <span class="role-number">04</span>
+              <span class="role-date">Jan 2025<br>— Jul 2025</span>
+              <span class="role-title"><h3>Android Developer</h3><span class="company">Epix Labs</span><p class="role-summary">Built a modular Android product for a car-rental startup.</p></span>
+              <span class="role-place">Tashkent, Uzbekistan<br>Contract</span>
+              <span class="role-toggle" aria-hidden="true">+</span>
+            </summary>
+            <div class="role-detail">
+              <ul><li>Worked on an app that enables users to browse and rent vehicles.</li><li>Built the project with Modular Architecture for scalability and maintainability.</li><li>Implemented core features with Jetpack Compose, Koin and Ktor Client.</li></ul>
+              <div class="tags"><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Modular Architecture</span><span class="tag">Koin</span><span class="tag">Ktor Client</span></div>
+            </div>
+          </details>
+
+          <details class="role">
+            <summary>
+              <span class="role-number">05</span>
+              <span class="role-date">Dec 2023<br>— Sep 2024</span>
+              <span class="role-title"><h3>Android Developer</h3><span class="company">Imkon Uzbekistan</span><p class="role-summary">Developed a 27-module messenger with modern Android architecture.</p></span>
+              <span class="role-place">Tashkent Region, Uzbekistan<br>On-site · Full-time</span>
+              <span class="role-toggle" aria-hidden="true">+</span>
+            </summary>
+            <div class="role-detail">
+              <ul><li>Developed a modular Messenger app with 27 modules using Jetpack Compose and Clean Architecture.</li><li>Integrated a Flutter authentication module and implemented Media3 for audio and video playback.</li><li>Created a Gradle convention plugin for faster, more consistent builds.</li></ul>
+              <div class="tags"><span class="tag">Kotlin Flow</span><span class="tag">Jetpack Compose</span><span class="tag">Clean Architecture</span><span class="tag">Media3</span><span class="tag">Gradle</span></div>
+            </div>
+          </details>
+
+          <details class="role">
+            <summary>
+              <span class="role-number">06</span>
+              <span class="role-date">Nov 2022<br>— Dec 2023</span>
+              <span class="role-title"><h3>Android Developer</h3><span class="company">Paylov</span><p class="role-summary">Built a payment app from scratch and improved its quality, performance and interface.</p></span>
+              <span class="role-place">Tashkent, Uzbekistan<br>On-site · Full-time</span>
+              <span class="role-toggle" aria-hidden="true">+</span>
+            </summary>
+            <div class="role-detail">
+              <ul><li>Built the payment app from scratch using MVVM and Coroutines.</li><li>Migrated annotation processing from KAPT to KSP, improving build speed by 3x.</li><li>Integrated Ktlint, reducing defects by 70%, and Firebase Crashlytics, reducing crashes by 95%.</li><li>Added dark mode, redesigned the UI and worked with complex interface elements.</li><li>Used GraphQL for APIs, Dagger 2 for DI, Cicerone for navigation and Epoxy for multi-item RecyclerView screens.</li></ul>
+              <div class="tags"><span class="tag">Kotlin</span><span class="tag">MVVM</span><span class="tag">Coroutines</span><span class="tag">KSP</span><span class="tag">Ktlint</span><span class="tag">Crashlytics</span><span class="tag">GraphQL</span><span class="tag">Dagger 2</span><span class="tag">Cicerone</span><span class="tag">Epoxy</span></div>
+            </div>
+          </details>
+
+          <details class="role">
+            <summary>
+              <span class="role-number">07</span>
+              <span class="role-date">Nov 2022<br>— Mar 2023</span>
+              <span class="role-title"><h3>Android Developer</h3><span class="company">UIC Group</span><p class="role-summary">Built practical Android development experience with architecture, UI and data tools.</p></span>
+              <span class="role-place">Tashkent, Uzbekistan<br>Full-time</span>
+              <span class="role-toggle" aria-hidden="true">+</span>
+            </summary>
+            <div class="role-detail">
+              <ul><li>Gained practical experience in Android development.</li><li>Deepened knowledge of MVVM architecture and Coroutines.</li><li>Worked with Epoxy and Room to improve UI and database performance.</li></ul>
+              <div class="tags"><span class="tag">Kotlin</span><span class="tag">Android SDK</span><span class="tag">MVVM</span><span class="tag">Coroutines</span><span class="tag">Epoxy</span><span class="tag">Room</span></div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-label">Selected projects</div>
+        <div class="projects-grid">
+          <a class="project" href="https://play.google.com/store/apps/details?id=com.corp.yoto" target="_blank" rel="noreferrer"><span class="project-index">PROJECT / 01</span><h3>YOTO</h3><span class="project-type">E-scooter rental app</span><p>Mobile product for renting and managing city e-scooters. Contributing to ongoing Android development and maintenance.</p><div class="project-stack">ROLE: Android Developer<br>STACK: Kotlin, Android SDK</div><span class="project-play">Open in Google Play</span></a>
+          <a class="project" href="https://play.google.com/store/apps/details?id=uz.wedrive.client" target="_blank" rel="noreferrer"><span class="project-index">PROJECT / 02</span><h3>WeDrive</h3><span class="project-type">Taxi client app</span><p>Client features covering payments, authentication, mapping and navigation with structured state management.</p><div class="project-stack">ROLE: Android Developer<br>STACK: Kotlin, Koin, Ktor, MVI, Mapbox</div><span class="project-play">Open in Google Play</span></a>
+          <a class="project" href="https://play.google.com/store/apps/details?id=com.commeta.messenger" target="_blank" rel="noreferrer"><span class="project-index">PROJECT / 03</span><h3>Commeta Messenger</h3><span class="project-type">Modular messenger</span><p>A 27-module messenger with Compose UI, clean boundaries, media playback and Flutter authentication integration.</p><div class="project-stack">ROLE: Android Developer<br>STACK: Kotlin, Compose, Clean Architecture, Media3</div><span class="project-play">Open in Google Play</span></a>
+          <a class="project" href="https://play.google.com/store/apps/details?id=uz.octagram.paylov" target="_blank" rel="noreferrer"><span class="project-index">PROJECT / 04</span><h3>Paylov</h3><span class="project-type">Payment app</span><p>Payment experience built from scratch, later improved through build tooling, crash monitoring, dark mode and UI redesign.</p><div class="project-stack">ROLE: Android Developer<br>STACK: Kotlin, MVVM, Coroutines, GraphQL, Dagger 2</div><span class="project-play">Open in Google Play</span></a>
+          <a class="project" href="https://play.google.com/store/apps/details?id=uz.toshmatov.currency" target="_blank" rel="noreferrer"><span class="project-index">PROJECT / 05</span><h3>Valyuta uz</h3><span class="project-type">Currency rates and converter</span><p>An independent app for tracking official exchange rates, converting currencies, receiving daily updates and using offline data and a home widget.</p><div class="project-stack">ROLE: Creator &amp; Android Developer<br>PRODUCT: Exchange rates &amp; converter</div><span class="project-play">Open in Google Play</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="stack">
+      <div class="container">
+        <div class="section-label">Technology index</div>
+        <div class="skill-icons-grid" aria-label="Featured technology skills">
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=kotlin&theme=dark" alt="Kotlin icon" loading="lazy"><div><strong>Kotlin</strong><span>Primary language</span></div></div>
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=java&theme=dark" alt="Java icon" loading="lazy"><div><strong>Java</strong><span>Android development</span></div></div>
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=androidstudio&theme=dark" alt="Android Studio icon" loading="lazy"><div><strong>Android</strong><span>SDK · Compose</span></div></div>
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=kotlin&theme=dark" alt="Kotlin icon for Kotlin Multiplatform" loading="lazy"><div><strong>Kotlin Multiplatform</strong><span>KMM · Shared logic</span></div></div>
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=kotlin&theme=dark" alt="Kotlin icon for Compose Multiplatform" loading="lazy"><div><strong>Compose Multiplatform</strong><span>CMP · Shared UI</span></div></div>
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=ktor&theme=dark" alt="Ktor icon" loading="lazy"><div><strong>Ktor</strong><span>Networking</span></div></div>
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=gradle&theme=dark" alt="Gradle icon" loading="lazy"><div><strong>Gradle</strong><span>Build tooling</span></div></div>
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=graphql&theme=dark" alt="GraphQL icon" loading="lazy"><div><strong>GraphQL</strong><span>API integration</span></div></div>
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=firebase&theme=dark" alt="Firebase icon" loading="lazy"><div><strong>Firebase</strong><span>Crashlytics</span></div></div>
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=git&theme=dark" alt="Git icon" loading="lazy"><div><strong>Git</strong><span>Version control</span></div></div>
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=github&theme=dark" alt="GitHub icon" loading="lazy"><div><strong>GitHub</strong><span>Collaboration</span></div></div>
+          <div class="skill-icon"><img src="https://skillicons.dev/icons?i=idea&theme=dark" alt="IntelliJ IDEA icon" loading="lazy"><div><strong>IntelliJ IDEA</strong><span>Multiplatform tools</span></div></div>
+        </div>
+        <div class="stack-grid">
+          <div class="stack-group"><h3>Language</h3><ul><li>Kotlin</li><li>Java</li><li>Kotlin Multiplatform</li></ul></div>
+          <div class="stack-group"><h3>UI</h3><ul><li>Jetpack Compose</li><li>Compose Multiplatform</li><li>Android Views</li><li>Epoxy</li><li>Media3</li></ul></div>
+          <div class="stack-group"><h3>Architecture</h3><ul><li>Clean Architecture</li><li>MVVM</li><li>MVI</li><li>Modular Architecture</li><li>Shared KMM modules</li></ul></div>
+          <div class="stack-group"><h3>Data / Network</h3><ul><li>Ktor Client</li><li>GraphQL</li><li>Room</li><li>Kotlin Flow</li></ul></div>
+          <div class="stack-group"><h3>DI / Tools</h3><ul><li>Koin</li><li>Dagger 2</li><li>KSP</li><li>Ktlint</li><li>Gradle Plugins</li></ul></div>
+          <div class="stack-group"><h3>Platform / Services</h3><ul><li>Firebase Crashlytics</li><li>Mapbox</li><li>Cicerone</li><li>Coroutines</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="updates">
+      <div class="container">
+        <div class="section-label">Updates / Professional notes</div>
+        <div class="updates-layout">
+          <div class="filters" aria-label="Filter updates">
+            <button class="filter active" type="button" data-filter="all">All</button>
+            <button class="filter" type="button" data-filter="career">Career</button>
+            <button class="filter" type="button" data-filter="project">Projects</button>
+            <button class="filter" type="button" data-filter="tech">Tech</button>
+          </div>
+          <div class="updates-list" aria-live="polite">
+            <article class="update" data-category="career"><time datetime="2025-12">Dec 2025</time><div><h3>Joined “XAVFSIZ SHAHAR” DM as Mobile Developer</h3><p>Started a full-time on-site role focused on Android and Java-based mobile development.</p></div><span class="update-category">Career</span></article>
+            <article class="update" data-category="project"><time datetime="2025-09">Sep 2025</time><div><h3>Continued Android development at YOTO</h3><p>Working part-time on the e-scooter rental and management experience in Tashkent.</p></div><span class="update-category">Project</span></article>
+            <article class="update" data-category="project"><time datetime="2025-08">Aug 2025</time><div><h3>Completed WeDrive taxi app work</h3><p>Contributed payment, login and map features using Kotlin, Ktor, Koin, MVI and Mapbox.</p></div><span class="update-category">Project</span></article>
+            <article class="update" data-category="tech"><time datetime="2025-07">Jul 2025</time><div><h3>Lessons from modular Android architecture</h3><p>Applied modular structure, Compose, Koin and Ktor while building a maintainable car-rental product.</p></div><span class="update-category">Tech</span></article>
+            <article class="update" data-category="tech"><time datetime="2024-09">Sep 2024</time><div><h3>Built at 27-module product scale</h3><p>Completed a messenger chapter involving Clean Architecture, Media3 and Gradle convention plugins.</p></div><span class="update-category">Tech</span></article>
+            <article class="update" data-category="tech"><time datetime="2023-12">Dec 2023</time><div><h3>Improved Android build speed and reliability</h3><p>Paylov work included a KAPT-to-KSP migration, Ktlint adoption and Firebase Crashlytics integration.</p></div><span class="update-category">Tech</span></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <h2>Let’s build something useful together.</h2>
+        <div class="contact-copy">
+          <div class="eyebrow">Contact</div>
+          <p>I am open to professional conversations, interesting Android products and opportunities to create real user impact.</p>
+          <a class="button button-primary" href="https://www.linkedin.com/in/alimardon-toshmatov-174042230/" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year">2026</span> <span class="footer-copy">Alimardon Toshmatov. Built with care and clean code.</span></span>
+      <a class="back-top" href="#about">Back to top</a>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        pageTitle: 'Alimardon Toshmatov — Android Developer', menu: 'Menu',
+        nav: ['About', 'Experience', 'Projects', 'Stack', 'Updates', 'Contact'],
+        hero: ['Android Developer', 'Android Developer', 'I build reliable, scalable and user-friendly Android products with modern architecture, thoughtful UX and maintainable code.', 'Tashkent, Uzbekistan', 'Open to professional connections', 'View experience', 'LinkedIn profile'],
+        brief: ['Focus', 'Android products used across mobility, messenger, payment, rental and public-safety domains.', 'Approach', 'Clean architecture, modular systems, Kotlin Multiplatform, Compose Multiplatform and long-term maintainability.', 'Writing clean code is not just about today. It is about the team, the product and the users who will rely on it tomorrow.'],
+        impactLabel: 'Impact summary',
+        impact: ['Professional roles documented from 2022 to present', 'Start of the professional Android journey', 'Featured mobile products across different domains', 'Technologies including native Android, KMM and CMP'],
+        what: ['What I do', 'End-to-end Android development: product features, scalable architecture, networking, state management, mapping, media and build performance.'],
+        experience: ['Experience', 'Select a role to expand or collapse details'],
+        roles: [
+          {title:'Mobile Developer', date:'Dec 2025<br>— Present', summary:'Building Android solutions in a public-safety environment.', place:'Tashkent Region, Uzbekistan<br>On-site · Full-time', details:['Working as a full-time Mobile Developer on-site in Tashkent Region.']},
+          {title:'Android Developer', date:'Sep 2025<br>— Present', summary:'Developing and maintaining the YOTO e-scooter rental and management application.', place:'Tashkent, Uzbekistan<br>On-site · Part-time', details:['Developing the mobile experience that lets users rent and manage YOTO e-scooters.','Maintaining the Android product while improving day-to-day reliability and usability.']},
+          {title:'Android Developer', date:'May 2025<br>— Aug 2025', summary:'Delivered taxi client features including payments, login and map experiences.', place:'Remote<br>Full-time', details:['Worked on the taxi app client side, including Payment, Login and MapScreen.','Used Koin for dependency injection, Ktor Client for networking and MVI for state management.','Integrated Mapbox for mapping and navigation.']},
+          {title:'Android Developer', date:'Jan 2025<br>— Jul 2025', summary:'Built a modular Android product for a car-rental startup.', place:'Tashkent, Uzbekistan<br>Contract', details:['Worked on an app that enables users to browse and rent vehicles.','Built the project with Modular Architecture for scalability and maintainability.','Implemented core features with Jetpack Compose, Koin and Ktor Client.']},
+          {title:'Android Developer', date:'Dec 2023<br>— Sep 2024', summary:'Developed a 27-module messenger with modern Android architecture.', place:'Tashkent Region, Uzbekistan<br>On-site · Full-time', details:['Developed a modular Messenger app with 27 modules using Jetpack Compose and Clean Architecture.','Integrated a Flutter authentication module and implemented Media3 for audio and video playback.','Created a Gradle convention plugin for faster, more consistent builds.']},
+          {title:'Android Developer', date:'Nov 2022<br>— Dec 2023', summary:'Built a payment app from scratch and improved its quality, performance and interface.', place:'Tashkent, Uzbekistan<br>On-site · Full-time', details:['Built the payment app from scratch using MVVM and Coroutines.','Migrated annotation processing from KAPT to KSP, improving build speed by 3x.','Integrated Ktlint, reducing defects by 70%, and Firebase Crashlytics, reducing crashes by 95%.','Added dark mode, redesigned the UI and worked with complex interface elements.','Used GraphQL for APIs, Dagger 2 for DI, Cicerone for navigation and Epoxy for multi-item RecyclerView screens.']},
+          {title:'Android Developer', date:'Nov 2022<br>— Mar 2023', summary:'Built practical Android development experience with architecture, UI and data tools.', place:'Tashkent, Uzbekistan<br>Full-time', details:['Gained practical experience in Android development.','Deepened knowledge of MVVM architecture and Coroutines.','Worked with Epoxy and Room to improve UI and database performance.']}
+        ],
+        projectsLabel: 'Selected projects', projectWord: 'PROJECT', play: 'Open in Google Play',
+        projects: [
+          {type:'E-scooter rental app', desc:'Mobile product for renting and managing city e-scooters. Contributing to ongoing Android development and maintenance.', meta:'ROLE: Android Developer<br>STACK: Kotlin, Android SDK'},
+          {type:'Taxi client app', desc:'Client features covering payments, authentication, mapping and navigation with structured state management.', meta:'ROLE: Android Developer<br>STACK: Kotlin, Koin, Ktor, MVI, Mapbox'},
+          {type:'Modular messenger', desc:'A 27-module messenger with Compose UI, clean boundaries, media playback and Flutter authentication integration.', meta:'ROLE: Android Developer<br>STACK: Kotlin, Compose, Clean Architecture, Media3'},
+          {type:'Payment app', desc:'Payment experience built from scratch, later improved through build tooling, crash monitoring, dark mode and UI redesign.', meta:'ROLE: Android Developer<br>STACK: Kotlin, MVVM, Coroutines, GraphQL, Dagger 2'},
+          {type:'Currency rates and converter', desc:'An independent app for tracking official exchange rates, converting currencies, receiving daily updates and using offline data and a home widget.', meta:'ROLE: Creator &amp; Android Developer<br>PRODUCT: Exchange rates &amp; converter'}
+        ],
+        stackLabel: 'Technology index',
+        skillCaptions: ['Primary language','Android development','SDK · Compose','KMM · Shared logic','CMP · Shared UI','Networking','Build tooling','API integration','Crashlytics','Version control','Collaboration','Multiplatform tools'],
+        stackGroups: ['Language','UI','Architecture','Data / Network','DI / Tools','Platform / Services'],
+        updatesLabel: 'Updates / Professional notes', filters: ['All','Career','Projects','Tech'], updateDates: ['Dec 2025','Sep 2025','Aug 2025','Jul 2025','Sep 2024','Dec 2023'],
+        updates: [
+          ['Joined “XAVFSIZ SHAHAR” DM as Mobile Developer','Started a full-time on-site role focused on Android and Java-based mobile development.','Career'],
+          ['Continued Android development at YOTO','Working part-time on the e-scooter rental and management experience in Tashkent.','Project'],
+          ['Completed WeDrive taxi app work','Contributed payment, login and map features using Kotlin, Ktor, Koin, MVI and Mapbox.','Project'],
+          ['Lessons from modular Android architecture','Applied modular structure, Compose, Koin and Ktor while building a maintainable car-rental product.','Tech'],
+          ['Built at 27-module product scale','Completed a messenger chapter involving Clean Architecture, Media3 and Gradle convention plugins.','Tech'],
+          ['Improved Android build speed and reliability','Paylov work included a KAPT-to-KSP migration, Ktlint adoption and Firebase Crashlytics integration.','Tech']
+        ],
+        contact: ['Let’s build something useful together.','Contact','I am open to professional conversations, interesting Android products and opportunities to create real user impact.','Connect on LinkedIn'],
+        footer: 'Alimardon Toshmatov. Built with care and clean code.', back: 'Back to top'
+      },
+      uz: {
+        pageTitle: 'Alimardon Toshmatov — Android dasturchi', menu: 'Menyu',
+        nav: ['Men haqimda', 'Tajriba', 'Loyihalar', 'Texnologiyalar', 'Yangiliklar', 'Aloqa'],
+        hero: ['Android dasturchi', 'Android dasturchi', 'Zamonaviy arxitektura, puxta UX va qo‘llab-quvvatlashga qulay kod yordamida ishonchli, kengaytiriladigan Android mahsulotlarini yarataman.', 'Toshkent, O‘zbekiston', 'Professional aloqalar uchun ochiq', 'Tajribani ko‘rish', 'LinkedIn profili'],
+        brief: ['Yo‘nalish', 'Mobilitet, messenjer, to‘lov, ijara va jamoat xavfsizligi sohalaridagi Android mahsulotlari.', 'Yondashuv', 'Clean Architecture, modulli tizimlar, Kotlin Multiplatform, Compose Multiplatform va uzoq muddatli qo‘llab-quvvatlash.', 'Toza kod faqat bugun uchun emas. U ertaga mahsulotga tayanadigan jamoa va foydalanuvchilar uchun yoziladi.'],
+        impactLabel: 'Asosiy ko‘rsatkichlar',
+        impact: ['2022-yildan hozirgacha 7 ta professional lavozim', 'Professional Android faoliyati boshlangan yil', 'Turli yo‘nalishlardagi tanlangan mobil mahsulotlar', 'Native Android, KMM va CMP bilan 20+ texnologiya'],
+        what: ['Nima qilaman', 'Android mahsulotlarini boshidan oxirigacha ishlab chiqish: funksiyalar, kengaytiriladigan arxitektura, tarmoq, holat boshqaruvi, xaritalar, media va build samaradorligi.'],
+        experience: ['Ish tajribasi', 'Batafsil ma’lumotni ochish yoki yopish uchun lavozimni tanlang'],
+        roles: [
+          {title:'Mobil dasturchi', date:'Dek 2025<br>— Hozirgacha', summary:'Jamoat xavfsizligi yo‘nalishida Android yechimlarini ishlab chiqish.', place:'Toshkent viloyati, O‘zbekiston<br>Ofisda · To‘liq stavka', details:['Toshkent viloyatida to‘liq stavkada Mobil dasturchi sifatida ishlayapman.']},
+          {title:'Android dasturchi', date:'Sen 2025<br>— Hozirgacha', summary:'YOTO elektrosamokat ijarasi va boshqaruv ilovasini ishlab chiqish hamda qo‘llab-quvvatlash.', place:'Toshkent, O‘zbekiston<br>Ofisda · Yarim stavka', details:['Foydalanuvchilarga YOTO elektrosamokatlarini ijaraga olish va boshqarish imkonini beruvchi mobil tajribani ishlab chiqyapman.','Android mahsulotining kundalik barqarorligi va qulayligini oshirib, uni qo‘llab-quvvatlayapman.']},
+          {title:'Android dasturchi', date:'May 2025<br>— Avg 2025', summary:'To‘lov, kirish va xarita kabi taksi mijoz ilovasi funksiyalarini ishlab chiqdim.', place:'Masofadan<br>To‘liq stavka', details:['Taksi ilovasining mijoz qismida Payment, Login va MapScreen ustida ishladim.','DI uchun Koin, tarmoq uchun Ktor Client va holat boshqaruvi uchun MVI ishlatdim.','Xarita va navigatsiya uchun Mapbox integratsiya qildim.']},
+          {title:'Android dasturchi', date:'Yan 2025<br>— Iyul 2025', summary:'Avtomobil ijarasi startapi uchun modulli Android mahsulot yaratdim.', place:'Toshkent, O‘zbekiston<br>Shartnoma asosida', details:['Foydalanuvchilarga avtomobillarni ko‘rish va ijaraga olish imkonini beruvchi ilova ustida ishladim.','Kengaytirish va qo‘llab-quvvatlash qulayligi uchun Modular Architecture asosida qurdim.','Asosiy funksiyalarni Jetpack Compose, Koin va Ktor Client bilan ishlab chiqdim.']},
+          {title:'Android dasturchi', date:'Dek 2023<br>— Sen 2024', summary:'Zamonaviy Android arxitekturasi bilan 27 modulli messenjer ishlab chiqdim.', place:'Toshkent viloyati, O‘zbekiston<br>Ofisda · To‘liq stavka', details:['Jetpack Compose va Clean Architecture yordamida 27 modulli messenjer ishlab chiqdim.','Flutter autentifikatsiya modulini integratsiya qildim va audio/video uchun Media3 ishlatdim.','Tezroq va barqaror buildlar uchun Gradle convention plugin yaratdim.']},
+          {title:'Android dasturchi', date:'Noy 2022<br>— Dek 2023', summary:'To‘lov ilovasini noldan yaratib, sifati, tezligi va interfeysini yaxshiladim.', place:'Toshkent, O‘zbekiston<br>Ofisda · To‘liq stavka', details:['To‘lov ilovasini MVVM va Coroutines yordamida noldan yaratdim.','KAPT’dan KSP’ga o‘tib, build tezligini 3 barobar oshirdim.','Ktlint bilan nuqsonlarni 70%, Firebase Crashlytics bilan crashlarni 95% kamaytirdim.','Dark mode qo‘shdim, UI’ni qayta ishlab chiqdim va murakkab interfeys elementlari bilan ishladim.','API uchun GraphQL, DI uchun Dagger 2, navigatsiya uchun Cicerone va RecyclerView ekranlari uchun Epoxy ishlatdim.']},
+          {title:'Android dasturchi', date:'Noy 2022<br>— Mar 2023', summary:'Arxitektura, UI va ma’lumotlar vositalari bilan amaliy Android tajribasi oldim.', place:'Toshkent, O‘zbekiston<br>To‘liq stavka', details:['Android ishlab chiqishda amaliy tajriba orttirdim.','MVVM arxitekturasi va Coroutines bo‘yicha bilimlarimni chuqurlashtirdim.','UI va ma’lumotlar bazasi samaradorligi uchun Epoxy va Room bilan ishladim.']}
+        ],
+        projectsLabel: 'Tanlangan loyihalar', projectWord: 'LOYIHA', play: 'Google Play’da ochish',
+        projects: [
+          {type:'Elektrosamokat ijarasi ilovasi', desc:'Shahar elektrosamokatlarini ijaraga olish va boshqarish uchun mobil mahsulot. Android ishlab chiqish va qo‘llab-quvvatlashda qatnashyapman.', meta:'ROL: Android dasturchi<br>STACK: Kotlin, Android SDK'},
+          {type:'Taksi mijoz ilovasi', desc:'To‘lovlar, autentifikatsiya, xarita va navigatsiya funksiyalari, tartibli holat boshqaruvi bilan.', meta:'ROL: Android dasturchi<br>STACK: Kotlin, Koin, Ktor, MVI, Mapbox'},
+          {type:'Modulli messenjer', desc:'Compose UI, aniq arxitektura chegaralari, media ijrosi va Flutter autentifikatsiyasiga ega 27 modulli messenjer.', meta:'ROL: Android dasturchi<br>STACK: Kotlin, Compose, Clean Architecture, Media3'},
+          {type:'To‘lov ilovasi', desc:'Noldan yaratilgan va keyinchalik build vositalari, crash monitoring, dark mode hamda UI redesign orqali yaxshilangan to‘lov mahsuloti.', meta:'ROL: Android dasturchi<br>STACK: Kotlin, MVVM, Coroutines, GraphQL, Dagger 2'},
+          {type:'Valyuta kurslari va konvertor', desc:'Rasmiy kurslarni kuzatish, valyutalarni hisoblash, kundalik yangilanishlar, offline ma’lumot va bosh ekran widgetiga ega mustaqil ilova.', meta:'ROL: Muallif va Android dasturchi<br>MAHSULOT: Valyuta kurslari va konvertor'}
+        ],
+        stackLabel: 'Texnologiyalar',
+        skillCaptions: ['Asosiy dasturlash tili','Android dasturlash','SDK · Compose','KMM · Umumiy logika','CMP · Umumiy UI','Tarmoq','Build vositalari','API integratsiyasi','Crashlytics','Versiyalar boshqaruvi','Hamkorlik','Multiplatform vositalar'],
+        stackGroups: ['Dasturlash tili','UI','Arxitektura','Ma’lumot / Tarmoq','DI / Vositalar','Platforma / Xizmatlar'],
+        updatesLabel: 'Yangiliklar / Professional qaydlar', filters: ['Barchasi','Faoliyat','Loyihalar','Texnologiya'], updateDates: ['Dek 2025','Sen 2025','Avg 2025','Iyul 2025','Sen 2024','Dek 2023'],
+        updates: [
+          ['“XAVFSIZ SHAHAR” DM jamoasiga Mobil dasturchi sifatida qo‘shildim','Android va Java asosidagi mobil dasturlashga qaratilgan to‘liq stavkali ofis ishini boshladim.','Faoliyat'],
+          ['YOTO’da Android ishlab chiqishni davom ettirdim','Toshkentdagi elektrosamokat ijarasi va boshqaruv tajribasi ustida yarim stavkada ishlayapman.','Loyiha'],
+          ['WeDrive taksi ilovasi ishlarini yakunladim','Kotlin, Ktor, Koin, MVI va Mapbox bilan to‘lov, login va xarita funksiyalariga hissa qo‘shdim.','Loyiha'],
+          ['Modulli Android arxitekturasidan olingan tajriba','Qo‘llab-quvvatlashga qulay avtomobil ijarasi mahsulotida modulli tuzilma, Compose, Koin va Ktor ishlatdim.','Texnologiya'],
+          ['27 modulli mahsulot miqyosida ishladim','Clean Architecture, Media3 va Gradle convention pluginlari ishtirok etgan messenjer bosqichini yakunladim.','Texnologiya'],
+          ['Android build tezligi va barqarorligini oshirdim','Paylov’da KAPT’dan KSP’ga o‘tish, Ktlint va Firebase Crashlytics integratsiyasi amalga oshirildi.','Texnologiya']
+        ],
+        contact: ['Birgalikda foydali mahsulot yarataylik.','Aloqa','Professional suhbatlar, qiziqarli Android mahsulotlari va haqiqiy foyda yaratadigan imkoniyatlarga ochiqman.','LinkedIn’da bog‘lanish'],
+        footer: 'Alimardon Toshmatov. E’tibor va toza kod bilan yaratildi.', back: 'Yuqoriga qaytish'
+      },
+      ru: {
+        pageTitle: 'Алимардон Тошматов — Android-разработчик', menu: 'Меню',
+        nav: ['Обо мне', 'Опыт', 'Проекты', 'Технологии', 'Новости', 'Контакты'],
+        hero: ['Android-разработчик', 'Android-разработчик', 'Создаю надёжные, масштабируемые и удобные Android-продукты с современной архитектурой, продуманным UX и поддерживаемым кодом.', 'Ташкент, Узбекистан', 'Открыт к профессиональному общению', 'Посмотреть опыт', 'Профиль LinkedIn'],
+        brief: ['Фокус', 'Android-продукты в сферах мобильности, мессенджеров, платежей, аренды и общественной безопасности.', 'Подход', 'Clean Architecture, модульные системы, Kotlin Multiplatform, Compose Multiplatform и долгосрочная поддерживаемость.', 'Чистый код пишется не только для сегодняшнего дня. Он создаётся для команды, продукта и пользователей, которые будут полагаться на него завтра.'],
+        impactLabel: 'Ключевые показатели',
+        impact: ['7 профессиональных ролей с 2022 года по настоящее время', 'Год начала профессиональной Android-карьеры', 'Избранные мобильные продукты в разных сферах', '20+ технологий, включая native Android, KMM и CMP'],
+        what: ['Чем я занимаюсь', 'Полный цикл Android-разработки: продуктовые функции, масштабируемая архитектура, сеть, управление состоянием, карты, медиа и производительность сборки.'],
+        experience: ['Опыт работы', 'Выберите роль, чтобы открыть или скрыть подробности'],
+        roles: [
+          {title:'Мобильный разработчик', date:'Дек 2025<br>— Сейчас', summary:'Разработка Android-решений в сфере общественной безопасности.', place:'Ташкентская область, Узбекистан<br>Офис · Полная занятость', details:['Работаю мобильным разработчиком на полной занятости в Ташкентской области.']},
+          {title:'Android-разработчик', date:'Сен 2025<br>— Сейчас', summary:'Разработка и поддержка приложения аренды и управления электросамокатами YOTO.', place:'Ташкент, Узбекистан<br>Офис · Частичная занятость', details:['Разрабатываю мобильный продукт для аренды и управления электросамокатами YOTO.','Поддерживаю Android-приложение, улучшая его ежедневную стабильность и удобство.']},
+          {title:'Android-разработчик', date:'Май 2025<br>— Авг 2025', summary:'Реализовал функции оплаты, входа и карт для клиентского приложения такси.', place:'Удалённо<br>Полная занятость', details:['Работал над клиентской частью приложения такси: Payment, Login и MapScreen.','Использовал Koin для DI, Ktor Client для сети и MVI для управления состоянием.','Интегрировал Mapbox для карт и навигации.']},
+          {title:'Android-разработчик', date:'Янв 2025<br>— Июл 2025', summary:'Создал модульный Android-продукт для стартапа по аренде автомобилей.', place:'Ташкент, Узбекистан<br>Контракт', details:['Работал над приложением для просмотра и аренды автомобилей.','Построил проект на Modular Architecture для масштабируемости и удобной поддержки.','Реализовал ключевые функции с Jetpack Compose, Koin и Ktor Client.']},
+          {title:'Android-разработчик', date:'Дек 2023<br>— Сен 2024', summary:'Разработал 27-модульный мессенджер на современной Android-архитектуре.', place:'Ташкентская область, Узбекистан<br>Офис · Полная занятость', details:['Разработал 27-модульный мессенджер с Jetpack Compose и Clean Architecture.','Интегрировал Flutter-модуль аутентификации и Media3 для воспроизведения аудио и видео.','Создал Gradle convention plugin для более быстрых и стабильных сборок.']},
+          {title:'Android-разработчик', date:'Ноя 2022<br>— Дек 2023', summary:'Создал платёжное приложение с нуля и улучшил его качество, скорость и интерфейс.', place:'Ташкент, Узбекистан<br>Офис · Полная занятость', details:['Создал платёжное приложение с нуля, используя MVVM и Coroutines.','Перевёл обработку аннотаций с KAPT на KSP, ускорив сборку в 3 раза.','Внедрил Ktlint, сократив дефекты на 70%, и Firebase Crashlytics, сократив сбои на 95%.','Добавил тёмную тему, обновил UI и работал со сложными элементами интерфейса.','Использовал GraphQL для API, Dagger 2 для DI, Cicerone для навигации и Epoxy для сложных RecyclerView-экранов.']},
+          {title:'Android-разработчик', date:'Ноя 2022<br>— Мар 2023', summary:'Получил практический опыт Android-разработки с архитектурой, UI и данными.', place:'Ташкент, Узбекистан<br>Полная занятость', details:['Получил практический опыт Android-разработки.','Углубил знания MVVM и Coroutines.','Работал с Epoxy и Room для повышения производительности UI и базы данных.']}
+        ],
+        projectsLabel: 'Избранные проекты', projectWord: 'ПРОЕКТ', play: 'Открыть в Google Play',
+        projects: [
+          {type:'Приложение аренды электросамокатов', desc:'Мобильный продукт для аренды и управления городскими электросамокатами. Участвую в Android-разработке и поддержке.', meta:'РОЛЬ: Android-разработчик<br>СТЕК: Kotlin, Android SDK'},
+          {type:'Клиентское приложение такси', desc:'Оплата, аутентификация, карты и навигация со структурированным управлением состоянием.', meta:'РОЛЬ: Android-разработчик<br>СТЕК: Kotlin, Koin, Ktor, MVI, Mapbox'},
+          {type:'Модульный мессенджер', desc:'27-модульный мессенджер с Compose UI, чистыми границами, воспроизведением медиа и Flutter-аутентификацией.', meta:'РОЛЬ: Android-разработчик<br>СТЕК: Kotlin, Compose, Clean Architecture, Media3'},
+          {type:'Платёжное приложение', desc:'Платёжный продукт, созданный с нуля и улучшенный с помощью build-инструментов, мониторинга сбоев, тёмной темы и редизайна UI.', meta:'РОЛЬ: Android-разработчик<br>СТЕК: Kotlin, MVVM, Coroutines, GraphQL, Dagger 2'},
+          {type:'Курсы валют и конвертер', desc:'Самостоятельное приложение для официальных курсов, конвертации, ежедневных обновлений, офлайн-данных и виджета главного экрана.', meta:'РОЛЬ: Автор и Android-разработчик<br>ПРОДУКТ: Курсы валют и конвертер'}
+        ],
+        stackLabel: 'Технологии',
+        skillCaptions: ['Основной язык','Android-разработка','SDK · Compose','KMM · Общая логика','CMP · Общий UI','Сеть','Инструменты сборки','Интеграция API','Crashlytics','Контроль версий','Совместная работа','Multiplatform-инструменты'],
+        stackGroups: ['Языки','UI','Архитектура','Данные / Сеть','DI / Инструменты','Платформа / Сервисы'],
+        updatesLabel: 'Новости / Профессиональные заметки', filters: ['Все','Карьера','Проекты','Технологии'], updateDates: ['Дек 2025','Сен 2025','Авг 2025','Июл 2025','Сен 2024','Дек 2023'],
+        updates: [
+          ['Присоединился к “XAVFSIZ SHAHAR” DM как мобильный разработчик','Начал офисную работу на полной занятости с фокусом на Android- и Java-разработке.','Карьера'],
+          ['Продолжил Android-разработку в YOTO','Работаю над продуктом аренды и управления электросамокатами в Ташкенте.','Проект'],
+          ['Завершил работу над приложением WeDrive','Участвовал в создании оплаты, входа и карт с Kotlin, Ktor, Koin, MVI и Mapbox.','Проект'],
+          ['Опыт модульной Android-архитектуры','Применил модульную структуру, Compose, Koin и Ktor в поддерживаемом продукте аренды автомобилей.','Технологии'],
+          ['Работа в масштабе 27 модулей','Завершил этап мессенджера с Clean Architecture, Media3 и Gradle convention plugins.','Технологии'],
+          ['Улучшил скорость сборки и стабильность Android','Работа над Paylov включала миграцию с KAPT на KSP, внедрение Ktlint и Firebase Crashlytics.','Технологии']
+        ],
+        contact: ['Давайте вместе создадим полезный продукт.','Контакты','Открыт к профессиональному общению, интересным Android-продуктам и возможностям создавать реальную ценность.','Связаться в LinkedIn'],
+        footer: 'Алимардон Тошматов. Создано с вниманием и чистым кодом.', back: 'Наверх'
+      }
+    };
+
+    function applyLanguage(language) {
+      const t = translations[language] || translations.en;
+      document.documentElement.lang = language;
+      document.title = t.pageTitle;
+      document.querySelector('.menu-button').textContent = t.menu;
+      document.querySelectorAll('.nav-links > a[href^="#"]').forEach((item, index) => { item.textContent = t.nav[index]; });
+
+      const hero = document.querySelector('.hero');
+      hero.querySelector('.hero-main .eyebrow').textContent = t.hero[0];
+      hero.querySelector('.hero-role').textContent = t.hero[1];
+      hero.querySelector('.hero-intro').textContent = t.hero[2];
+      hero.querySelectorAll('.hero-meta > span')[0].textContent = t.hero[3];
+      hero.querySelector('.status').lastChild.textContent = t.hero[4];
+      hero.querySelectorAll('.actions .button')[0].textContent = t.hero[5];
+      hero.querySelectorAll('.actions .button')[1].textContent = t.hero[6];
+      hero.querySelectorAll('.brief-item dt').forEach((item, index) => { item.textContent = t.brief[index * 2]; });
+      hero.querySelectorAll('.brief-item dd').forEach((item, index) => { item.textContent = t.brief[index * 2 + 1]; });
+      hero.querySelector('.principle').textContent = t.brief[4];
+
+      document.querySelector('.impact .section-label').textContent = t.impactLabel;
+      document.querySelectorAll('.impact-item span').forEach((item, index) => { item.textContent = t.impact[index]; });
+      document.querySelector('.impact-copy .eyebrow').textContent = t.what[0];
+      document.querySelector('.impact-copy p').textContent = t.what[1];
+
+      const experience = document.querySelector('#experience');
+      experience.querySelector('.section-label').textContent = t.experience[0];
+      experience.querySelector('.experience-tip').textContent = t.experience[1];
+      experience.querySelectorAll('.role').forEach((role, index) => {
+        const data = t.roles[index];
+        role.querySelector('.role-title h3').textContent = data.title;
+        role.querySelector('.role-date').innerHTML = data.date;
+        role.querySelector('.role-summary').textContent = data.summary;
+        role.querySelector('.role-place').innerHTML = data.place;
+        role.querySelectorAll('.role-detail li').forEach((item, itemIndex) => { item.textContent = data.details[itemIndex]; });
+      });
+
+      const projects = document.querySelector('#projects');
+      projects.querySelector('.section-label').textContent = t.projectsLabel;
+      projects.querySelectorAll('.project').forEach((project, index) => {
+        project.querySelector('.project-index').textContent = `${t.projectWord} / ${String(index + 1).padStart(2, '0')}`;
+        project.querySelector('.project-type').textContent = t.projects[index].type;
+        project.querySelector('p').textContent = t.projects[index].desc;
+        project.querySelector('.project-stack').innerHTML = t.projects[index].meta;
+        project.querySelector('.project-play').textContent = t.play;
+        project.setAttribute('aria-label', `${project.querySelector('h3').textContent}: ${t.play}`);
+      });
+
+      const stack = document.querySelector('#stack');
+      stack.querySelector('.section-label').textContent = t.stackLabel;
+      stack.querySelectorAll('.skill-icon span').forEach((item, index) => { item.textContent = t.skillCaptions[index]; });
+      stack.querySelectorAll('.stack-group h3').forEach((item, index) => { item.textContent = t.stackGroups[index]; });
+
+      const updatesSection = document.querySelector('#updates');
+      updatesSection.querySelector('.section-label').textContent = t.updatesLabel;
+      updatesSection.querySelectorAll('.filter').forEach((item, index) => { item.textContent = t.filters[index]; });
+      updatesSection.querySelectorAll('.update').forEach((item, index) => {
+        item.querySelector('time').textContent = t.updateDates[index];
+        item.querySelector('h3').textContent = t.updates[index][0];
+        item.querySelector('p').textContent = t.updates[index][1];
+        item.querySelector('.update-category').textContent = t.updates[index][2];
+      });
+
+      const contact = document.querySelector('#contact');
+      contact.querySelector('h2').textContent = t.contact[0];
+      contact.querySelector('.eyebrow').textContent = t.contact[1];
+      contact.querySelector('p').textContent = t.contact[2];
+      contact.querySelector('.button').textContent = t.contact[3];
+      document.querySelector('.footer-copy').textContent = t.footer;
+      document.querySelector('.back-top').textContent = t.back;
+
+      document.querySelectorAll('.language-button').forEach((button) => {
+        const active = button.dataset.language === language;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+    }
+
+    const menuButton = document.querySelector('.menu-button');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuButton.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+
+    document.querySelectorAll('.nav-links a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const sectionLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+    const sections = sectionLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        sectionLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+      });
+    }, { rootMargin: '-35% 0px -55% 0px' });
+    sections.forEach((section) => observer.observe(section));
+
+    const filters = document.querySelectorAll('.filter');
+    const updates = document.querySelectorAll('.update');
+    filters.forEach((filter) => {
+      filter.addEventListener('click', () => {
+        filters.forEach((item) => item.classList.remove('active'));
+        filter.classList.add('active');
+        const selected = filter.dataset.filter;
+        updates.forEach((update) => { update.hidden = selected !== 'all' && update.dataset.category !== selected; });
+      });
+    });
+
+    document.querySelectorAll('.language-button').forEach((button) => {
+      button.addEventListener('click', () => {
+        const language = button.dataset.language;
+        applyLanguage(language);
+        try { localStorage.setItem('portfolio-language', language); } catch (error) { /* File previews may block storage. */ }
+      });
+    });
+
+    let savedLanguage = 'en';
+    try { savedLanguage = localStorage.getItem('portfolio-language') || 'en'; } catch (error) { /* Use English fallback. */ }
+    applyLanguage(savedLanguage);
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
